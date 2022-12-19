@@ -1,0 +1,32 @@
+<nav class="navbar standart-navbar navbar-expand-lg fixed-top" id="navbar">
+  <div class="container">
+    <a class="navbar-text-colour navbar-brand" href="#">Hotel</a>
+    <button class="navbar-toggler" (click)="OnMenuButtonClick()" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- <span class="navbar-toggler-icon" style="opacity: 1;"></span> -->
+      <i class="bi bi-list navbar-text-colour"></i>
+
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item active">
+          <button class="btn nav-btn">Book you stay</button>
+        </li>
+        <li class="nav-item">
+          <button class="btn nav-menu nav-btn nav-menu"  (click)="OnExpandMenuButtonClick()"><i class="bi bi-menu-app"></i> Menu</button>
+        </li>
+      </ul>
+
+
+    </div>
+  </div>
+</nav>
+
+<div id="myNav" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" (click)="OnExpandMenuButtonClick()">&times;</a>
+  <div class="overlay-content">
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+  </div>
+</div>

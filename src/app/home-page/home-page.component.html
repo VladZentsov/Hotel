@@ -1,0 +1,147 @@
+<app-header></app-header>
+
+ <!--================Home Banner Area =================-->
+ <div class="home_banner_area"  id="element2" >
+
+  <!-- <div fxFlex *ngIf="dishes">
+    <mat-grid-list cols="2" rowHeight="200px">
+      <mat-grid-tile *ngFor="let dish of dishes" [routerLink]="['/dishdetail', dish.id]">
+        <img height="200px" src={{dish.image}} alt={{dish.name}}>
+        <mat-grid-tile-footer>
+          <h1 matLine> {{dish.name | uppercase}} </h1>
+        </mat-grid-tile-footer>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div> -->
+
+  <div fxFlex *ngIf="rooms">
+    <div class="container" *ngFor="let room of rooms">
+      <div class="information_home_card">
+        <div class="img_holder">
+          <img src={{room.imgName}} class="image rounded float-left" alt="...">
+        </div>
+        <div class="row justify-content-end">
+          <div class="col-lg-7">
+            <div class="item">
+              <div class="blog_text">
+                <div class="cat">
+                  <a class="cat_btn" href="#">Gadgets</a>
+                  <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
+                  <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
+                </div>
+                <a href="#"><h4>{{room.Title}}</h4></a>
+                <p>{{room.Description}}</p>
+                <a class="home_btn" href="#" [routerLink]="['/roomdetail', room.Id]">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="container">
+    <div class="information_home_card">
+      <div class="img_holder">
+        <img src="https://inhabitgroup.com/wp-content/uploads/2021/04/HK-HariHotel-04-900px-CreditDennisLo.jpg " class="image rounded float-left" alt="...">
+      </div>
+      <div class="row justify-content-end">
+        <div class="col-lg-7">
+          <div class="item">
+            <div class="blog_text">
+              <div class="cat">
+                <a class="cat_btn" href="#">Gadgets</a>
+                <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
+                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
+              </div>
+              <a href="#"><h4>Nest Protect: 2nd Gen Smoke + CO Alarm</h4></a>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <a class="home_btn" href="#">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="information_home_card background-dark">
+      <div class="img_holder">
+        <img src="https://inhabitgroup.com/wp-content/uploads/2021/04/HK-HariHotel-04-900px-CreditDennisLo.jpg " class="img_right image rounded float-left" alt="...">
+      </div>
+      <div class="row">
+        <div class="col-lg-7">
+          <div class="item">
+            <div class="blog_text">
+              <div class="cat">
+                <a class="cat_btn" href="#">Gadgets</a>
+                <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
+                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
+              </div>
+              <a href="#"><h4>Nest Protect: 2nd Gen Smoke + CO Alarm</h4></a>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <a class="home_btn" href="#">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="information_home_card">
+      <div class="img_holder">
+        <img src="https://inhabitgroup.com/wp-content/uploads/2021/04/HK-HariHotel-04-900px-CreditDennisLo.jpg " class="image rounded float-left" alt="...">
+      </div>
+      <div class="row justify-content-end">
+        <div class="col-lg-7">
+          <div class="item">
+            <div class="blog_text">
+              <div class="cat">
+                <a class="cat_btn" href="#">Gadgets</a>
+                <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
+                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
+              </div>
+              <a href="#"><h4>Nest Protect: 2nd Gen Smoke + CO Alarm</h4></a>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <a class="home_btn" href="#">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- <div class="bg-image"
+     style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg'); height: 100vh; width: 50hv;">
+</div> -->
+
+<!-- <div class="has-bg-img">
+  <h2>Hero Section</h2>
+  <h4>It's easy to set background image with Torus Kit</h4>
+  <img class="bg-img" src="https://mdbootstrap.com/img/Photos/Others/images/76.jpg">
+</div> -->
+<!--================End Home Banner Area =================-->
+
+          <!-- <div class="item">
+            <div class="blog_text">
+              <div class="cat">
+                <a class="cat_btn" href="#">Gadgets</a>
+                <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
+                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
+              </div>
+              <a href="#"><h4>Nest Protect: 2nd Gen Smoke + CO Alarm</h4></a>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <a class="blog_btn" href="#">Read More</a>
+            </div>
+          </div>
+          <div class="item">
+            <div class="blog_text">
+              <div class="cat">
+                <a class="cat_btn" href="#">Gadgets</a>
+                <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
+                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
+              </div>
+              <a href="#"><h4>Nest Protect: 2nd Gen Smoke + CO Alarm</h4></a>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <a class="blog_btn" href="#">Read More</a>
+            </div>
+          </div> -->
