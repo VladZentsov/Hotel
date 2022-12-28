@@ -9,19 +9,22 @@ import { RoomDetailed } from '../shared/RoomDetails';
 import { Form, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { BookFullInfo } from '../shared/BookFullInfo';
 import { BookCreateModel } from '../shared/BookCreateModel';
+import { RoomFullnfo } from '../shared/RoomFullInfo';
+import { Book } from '../shared/Book';
+import { Customer } from '../shared/Customer';
+import { CustomerService } from '../services/customer.service';
 
 const today = new Date();
 const month = today.getMonth();
 const year = today.getFullYear();
 const day = today.getDay();
 
-
 @Component({
-  selector: 'app-room-detail',
-  templateUrl: './room-detail.component.html',
-  styleUrls: ['./room-detail.component.scss']
+  selector: 'app-admin-room-detail',
+  templateUrl: './admin-room-detail.component.html',
+  styleUrls: ['./admin-room-detail.component.scss']
 })
-export class RoomDetailComponent implements OnInit {
+export class AdminRoomDetailComponent implements OnInit {
 
   room?: RoomDetailed
   freeBookDates?: FreeBookDates
@@ -30,6 +33,8 @@ export class RoomDetailComponent implements OnInit {
   fitstImg?: string;
   bookForm!: FormGroup;
   bookCreateModel?: BookCreateModel;
+  book:Book
+  customer: Customer
 
   @ViewChild('fform') feedbackFormDirective: any;
 
@@ -63,29 +68,20 @@ export class RoomDetailComponent implements OnInit {
 
   }
 
-  constructor(private route: ActivatedRoute, private roomService: RoomService, private bookService: BookService, private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, private roomService: RoomService, private customerService: CustomerService, private bookService: BookService, private fb: FormBuilder) {
     this.createForm();
    }
 
 
 
   ngOnInit(): void {
-    this.route.params.pipe(switchMap((params: Params)=>this.roomService.getRoomDetailedById(params['id'])))
-    .subscribe((room) => {
-      this.room = room
-
-      this.bookService.getFreeBookDates(this.room?.Id).subscribe((freeBookDates)=>{
-        this.freeBookDates = freeBookDates
-        console.log(freeBookDates)
+    this.route.params.pipe(switchMap((params: Params)=>this.bookService.getBookById(params['id'])))
+    .subscribe((book) => {
+      this.book = book
+      this.roomService.getRoomDetailedById(book.RoomId).subscribe((room)=>this.room = room)
+      this.customerService.getCustomerById(book.CustomerId).subscribe((customer)=>this.customer = customer)
       })
 
-      this.caruselButtons = Array.from({length: room.ImgNames.length}, (_, i) => i + 1)
-
-      this.fitstImg = room.ImgNames[0]
-      this.imgNumber = 0
-
-
-    });
   }
 
   createForm(){

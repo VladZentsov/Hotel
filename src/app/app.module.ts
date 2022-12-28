@@ -38,6 +38,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 import { RoomDetailComponent } from './room-detail/room-detail.component';
 import { AdminMenuComponent } from './admin-menu/admin-menu.component';
+import { AdminRoomDetailComponent } from './admin-room-detail/admin-room-detail.component';
+
+import { NgxRerenderModule } from 'ngx-rerender';
+import { AdminRoomEditComponent } from './admin-room-edit/admin-room-edit.component';
 
 
 
@@ -50,6 +54,8 @@ import { AdminMenuComponent } from './admin-menu/admin-menu.component';
     FooterComponent,
     RoomDetailComponent,
     AdminMenuComponent,
+    AdminRoomDetailComponent,
+    AdminRoomEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,6 +84,7 @@ import { AdminMenuComponent } from './admin-menu/admin-menu.component';
     MatNativeDateModule,
 
     ReactiveFormsModule,
+    NgxRerenderModule,
   ],
   exports:[
     MatButtonModule,

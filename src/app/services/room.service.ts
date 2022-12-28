@@ -6,7 +6,10 @@ import { Room } from '../shared/room';
 import { filter, map, Observable, of } from 'rxjs';
 import { RoomCategory } from '../shared/RoomCategory';
 import { hotelImageSrc } from 'src/environments/environment';
-import { RoomDetailed } from '../shared/roomDetails';
+
+import { RoomFullnfo } from '../shared/RoomFullInfo';
+import { RoomDetailed } from '../shared/RoomDetails';
+import { RoomsSettlement } from '../shared/RoomsSettlement';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +37,16 @@ export class RoomService {
     return rooms;
    }
 
+   getRoomById(id: string):Observable<Room>{
+    let url = `${this.baseUrl}${ApiPaths.Room}`+'/'+id;
+
+    let room = this.httpClient.get<RoomDetailed>(url)
+
+    room = this.HandleObsRoomToRoomDetailed(room) as Observable<RoomDetailed>
+
+    return room;
+   }
+
    getRoomDetailedById(id: string):Observable<RoomDetailed>{
     let url = `${this.baseUrl}${ApiPaths.Room}`+'/roomDetailed/'+id;
 
@@ -41,9 +54,45 @@ export class RoomService {
 
     room = this.HandleObsRoomToRoomDetailed(room) as Observable<RoomDetailed>
 
-
     return room;
    }
+
+   getRoomFullInfos():Observable<RoomFullnfo[]>{
+    let url = `${this.baseUrl}${ApiPaths.Room}`+'/roomFullInfos';
+
+    let rooms = this.httpClient.get<RoomFullnfo[]>(url).pipe(
+      map((rooms: RoomFullnfo[]) => {
+        rooms.forEach(room => {
+          room = this.HandleRoomToRoomDetailed(room) as RoomFullnfo
+        });
+        return rooms;
+      })
+    )
+
+    return rooms;
+   }
+
+   getRoomFullInfoById(id: string):Observable<RoomFullnfo>{
+    let url = `${this.baseUrl}${ApiPaths.Room}`+'/roomFullInfo/'+id;
+
+    let rooms = this.httpClient.get<RoomFullnfo>(url).pipe(
+      map((room: RoomFullnfo) => {
+          room = this.HandleRoomToRoomDetailed(room) as RoomFullnfo
+        return room;
+      })
+    )
+
+    return rooms;
+   }
+
+   getRoomsSettlement():Observable<RoomsSettlement[][]>{
+    let url = `${this.baseUrl}${ApiPaths.Room}`+'/roomsSettlement';
+
+    let roomsSettlement = this.httpClient.get<RoomsSettlement[][]>(url)
+
+    return roomsSettlement;
+   }
+
 
    HandleObsRoomToRoomDetailed(room: Observable<RoomDetailed>):Observable<RoomDetailed>{
 
@@ -58,10 +107,12 @@ export class RoomService {
    HandleRoomToRoomDetailed(room: RoomDetailed):RoomDetailed{
     room = this.HandleRoom(room) as RoomDetailed
 
-    for (let index = 0; index < room.ImgNames.length; index++) {
-      const imgName =  hotelImageSrc + room.ImgNames[index]+".jpg";
+    if(room.ImgNames!=null){
+      for (let index = 0; index < room.ImgNames.length; index++) {
+        const imgName =  hotelImageSrc + room.ImgNames[index]+".jpg";
 
-      room.ImgNames[index] = imgName;
+        room.ImgNames[index] = imgName;
+      }
     }
 
     return room;
@@ -78,5 +129,13 @@ export class RoomService {
     return room;
    }
 
-
+  //  private compareRoomFullInfos(a:RoomFullnfo, b:RoomFullnfo){
+  //   if ( a.BooksAndCustomersInfo[0][0]. < b.last_nom ){
+  //     return -1;
+  //   }
+  //   if ( a.last_nom > b.last_nom ){
+  //     return 1;
+  //   }
+  //   return 0;
+  //  }
 }

@@ -13,7 +13,8 @@ export enum ApiPaths {
   Bar = '/bar',
   Room ='/Room',
   Book ='/Book',
-  CreateBook = '/createBook'
+  CreateBook = '/createBook',
+  Customer ='/Customer',
 }
 
 export const hotelImageSrc = "/assets/hotelImgs/"

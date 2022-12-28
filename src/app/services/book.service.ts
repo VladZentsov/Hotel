@@ -7,6 +7,7 @@ import { FreeBookDates } from '../shared/freeBookDates';
 import { HttpHeaders } from '@angular/common/http';
 import { BookCreateModel } from '../shared/BookCreateModel';
 import { filter, map, of } from 'rxjs';
+import { Book } from '../shared/Book';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,14 @@ export class BookService {
 
     return freeBookDates;
   }
+
+  getBookById(id: string):Observable<Book>{
+    let url = `${this.baseUrl}${ApiPaths.Book}`+'/getBook/'+id;
+
+    let book = this.httpClient.get<Book>(url)
+
+    return book;
+   }
 
   addBook(book: BookCreateModel){
 

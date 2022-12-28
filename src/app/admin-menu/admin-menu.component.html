@@ -1,1 +1,72 @@
-<p>admin-menu works!</p>
+<app-header></app-header>
+<div class="home_banner_area"  id="element2" >
+  <div fxFlex>
+    <div fxLayout="column" fxLayout.gt-sm="row">
+        <div fxFlex fxFlex="50" fxFlexOffset="20px" *ngIf="twoDimentionalRoomsSettlement">
+            <div *ngFor="let roomsSettlement of twoDimentionalRoomsSettlement">
+                <h4 matLine>Date: {{roomsSettlement[0].Date | date:'medium'}}</h4>
+                <mat-list-item *ngFor="let roomSettlement of roomsSettlement">
+                <div class="line-block">
+                    <p matLine>Room id: {{roomSettlement.RoomId}} </p>
+                    <p matLine *ngIf="roomSettlement.IsSettlement">Settlement</p>
+                    <p matLine *ngIf="!roomSettlement.IsSettlement">Departure</p>
+                    <button type="button" class="btn btn-primary" [routerLink]="['/admin-room-detail', roomSettlement.RoomId]">View details</button>
+                </div>
+                </mat-list-item>
+            </div>
+        </div>
+
+        <div fxFlex="50" fxFlexOffset="20px">
+          <mat-card  *mcRerender="calendarTrigger" class="demo-inline-calendar-card">
+            <mat-calendar [dateFilter]="myFilter"></mat-calendar>
+          </mat-card>
+        </div>
+
+      <div fxFlex="50" fxFlexOffset="20px">
+        <label for="department">Select room</label>
+        <select id="department" name="department" [(ngModel)]="currentRoomId"
+                class="form-control">
+          <option *ngFor="let room of rooms" [value]="room.Id">
+            {{room.Title}}
+          </option>
+        </select>
+
+        <h4>Room Information</h4>
+        <div *ngIf="room">
+          <p>Name: {{room.Description}}</p>
+          <p>Category: {{room.Category}}</p>
+          <p>Count of visitors: {{room.VisitorsNumber}}</p>
+          <p>Description: {{room.Description}}</p>
+          <p>Title: {{room.Title}}</p>
+        </div>
+
+
+        <mat-card class="card">
+          <mat-card-header>
+            <div mat-card-avatar class="card-header-image"></div>
+            <mat-card-title>{{room?.Title}}</mat-card-title>
+            <mat-card-subtitle>Hotel</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="{{room?.imgName}}" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+            <mat-list>
+              <mat-list-item>Category: {{room?.Category}}</mat-list-item>
+              <mat-list-item>Count of visitors: {{room?.VisitorsNumber}}</mat-list-item>
+             </mat-list>
+            <p>
+              {{room?.Description}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions style="margin-top: 30px;">
+            <button mat-button>Go to view</button>
+            <button mat-button>Edit</button>
+          </mat-card-actions>
+        </mat-card>
+
+
+
+    </div>
+
+  </div>
+</div>
+
