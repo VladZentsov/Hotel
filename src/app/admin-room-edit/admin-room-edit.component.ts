@@ -26,8 +26,8 @@ export class AdminRoomEditComponent implements OnInit {
   fitstImg?: string;
   editForm!: FormGroup;
 
-  currentRoom: Room
-  editedRoom: Room
+  currentRoom: RoomDetailed
+  editedRoom: RoomDetailed
 
   public RoomCategory2LabelMapping = RoomCategory2LabelMapping;
 
@@ -76,12 +76,36 @@ export class AdminRoomEditComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.route.params.pipe(switchMap((params: Params)=>this.roomService.getRoomDetailedById(params['id'])))
-    .subscribe((room) => {
-      this.currentRoom = room
-      this.createForm();
-      console.log(room)
-      })
+    // this.route.params.pipe(switchMap((params: Params)=>this.roomService.getRoomDetailedById(params['id'])))
+    // .subscribe((room) => {
+    //   this.currentRoom = room
+    //   this.createForm();
+
+    //   })
+
+
+
+
+
+
+
+      this.route.params.pipe(switchMap((params: Params)=>this.roomService.getRoomDetailedById(params['id'])))
+      .subscribe((room) => {
+        this.currentRoom = room
+        this.createForm();
+
+        this.bookService.getFreeBookDates(this.room?.Id).subscribe((freeBookDates)=>{
+          this.freeBookDates = freeBookDates
+          console.log(freeBookDates)
+        })
+
+        this.caruselButtons = Array.from({length: room.ImgNames.length}, (_, i) => i + 1)
+
+        this.fitstImg = room.ImgNames[0]
+        this.imgNumber = 0
+
+
+      });
   }
 
   createForm(){

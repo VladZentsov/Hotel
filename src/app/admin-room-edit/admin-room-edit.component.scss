@@ -14,3 +14,16 @@
   align-items: stretch;
   margin-bottom: 10px;
 }
+
+.carousel-item {
+  height: 500px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.container{
+  width: 100%;
+}
