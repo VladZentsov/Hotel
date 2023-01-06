@@ -1,4 +1,4 @@
-import { Room } from "./room";
+import { Room } from "./Room";
 import { RoomCategory } from "./RoomCategory";
 
 export class RoomDetailed extends Room{
@@ -9,11 +9,14 @@ export class RoomDetailed extends Room{
     Price: number,
     VisitorsNumber: number,
     Description: string,
+    viewImgName: string,
     imgName: string,
     Title: string,
-    ImgNames: string[]
+    ImgNames: string[],
+    FirstDateForSettelment: Date
   ){
-    super(Id, Category, Price, VisitorsNumber, Description, imgName, Title);
+    super(Id, Category, Price, VisitorsNumber, Description, viewImgName, Title, imgName, FirstDateForSettelment);
     this.ImgNames = ImgNames
+
   }
 }

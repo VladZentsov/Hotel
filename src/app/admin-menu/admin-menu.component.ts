@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BookService } from '../services/book.service';
 import { RoomService } from '../services/room.service';
 import { FreeBookDates } from '../shared/freeBookDates';
-import { Room } from '../shared/room';
+import { Room } from '../shared/Room';
 import { RoomFullnfo } from '../shared/RoomFullInfo';
 import { RoomsSettlement } from '../shared/RoomsSettlement';
 import { AfterViewChecked, ElementRef, QueryList, Renderer2, ViewChildren } from '@angular/core';

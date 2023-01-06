@@ -16,6 +16,7 @@ export class BookFullInfo extends Book{
     Category: RoomCategory,
     VisitorsNumber: number,
     Description: string,
+    viewImgName: string,
     imgName: string,
     telNumber: string,
 
@@ -25,11 +26,12 @@ export class BookFullInfo extends Book{
     this.Price = Price;
     this.VisitorsNumber = VisitorsNumber;
     this.Description = Description;
-    this.imgName = imgName;
+    this.viewImgName = viewImgName;
     this.Name = Name;
     this.Surname = Surname,
     this.Email = Email,
     this.telNumber = telNumber
+    this.imgName = imgName
   }
   Name: string;
   Surname: string;
@@ -37,7 +39,8 @@ export class BookFullInfo extends Book{
   Category: RoomCategory;
   VisitorsNumber: number;
   Description: string;
-  imgName: string;
+  viewImgName: string;
   telNumber: string;
+  imgName: string;
 
 }

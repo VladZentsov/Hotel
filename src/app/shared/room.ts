@@ -8,16 +8,20 @@ export class Room{
     Price: number,
     VisitorsNumber: number,
     Description: string,
+    viewImgName: string,
+    Title: string,
     imgName: string,
-    Title: string
+    FirstDateForSettelment: Date
   ){
     this.Id = Id;
     this.Category = Category;
     this.Price = Price;
     this.VisitorsNumber = VisitorsNumber;
     this.Description = Description;
-    this.imgName = imgName;
+    this.viewImgName = viewImgName;
     this.Title = Title;
+    this.imgName = imgName;
+    this.FirstDateForSettelment = FirstDateForSettelment
   }
 
   Id: string;
@@ -25,6 +29,8 @@ export class Room{
   Price: number;
   VisitorsNumber: number;
   Description: string;
+  viewImgName: string;
   imgName: string;
   Title: string;
+  FirstDateForSettelment: Date;
 }

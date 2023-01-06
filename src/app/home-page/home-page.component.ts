@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomCategory } from '../shared/RoomCategory';
-import { Room } from '../shared/room';
+import { Room } from '../shared/Room';
 import { RoomService } from '../services/room.service';
 import { environment } from 'src/environments/environment';
 import { hotelImageSrc } from 'src/environments/environment';

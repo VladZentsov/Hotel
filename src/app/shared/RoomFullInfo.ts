@@ -12,12 +12,14 @@ export class RoomFullnfo extends RoomDetailed{
     Price: number,
     VisitorsNumber: number,
     Description: string,
-    imgName: string,
+    viewImgName: string,
     Title: string,
     ImgNames: string[],
-    BooksAndCustomersInfo: [Book, Customer][]
+    imgName: string,
+    BooksAndCustomersInfo: [Book, Customer][],
+    FirstDateForSettelment: Date
   ){
-    super(Id, Category, Price, VisitorsNumber, Description, imgName, Title, ImgNames);
+    super(Id, Category, Price, VisitorsNumber, Description, viewImgName, Title, imgName, ImgNames, FirstDateForSettelment);
     this.BooksAndCustomersInfo = BooksAndCustomersInfo
   }
 }

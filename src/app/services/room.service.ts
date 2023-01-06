@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ApiPaths } from 'src/environments/environment';
-import { Room } from '../shared/room';
+import { Room } from '../shared/Room';
 import { filter, map, Observable, of } from 'rxjs';
 import { RoomCategory } from '../shared/RoomCategory';
 import { hotelImageSrc } from 'src/environments/environment';
@@ -10,11 +10,16 @@ import { hotelImageSrc } from 'src/environments/environment';
 import { RoomFullnfo } from '../shared/RoomFullInfo';
 import { RoomDetailed } from '../shared/RoomDetails';
 import { RoomsSettlement } from '../shared/RoomsSettlement';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoomService {
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   private baseUrl = environment.baseUrl;
 
@@ -93,6 +98,19 @@ export class RoomService {
     return roomsSettlement;
    }
 
+   updateRoom(room: RoomDetailed){
+
+    let url = `${this.baseUrl}${ApiPaths.Room}`+'/update';
+
+    console.log()
+
+    let body = JSON.stringify(room);
+    console.log("sfd")
+    console.log(body)
+
+    this.httpClient.post(url, body, this.httpOptions)
+    .subscribe(response=> console.log(response))
+  }
 
    HandleObsRoomToRoomDetailed(room: Observable<RoomDetailed>):Observable<RoomDetailed>{
 
@@ -109,9 +127,9 @@ export class RoomService {
 
     if(room.ImgNames!=null){
       for (let index = 0; index < room.ImgNames.length; index++) {
-        const imgName =  hotelImageSrc + room.ImgNames[index]+".jpg";
+        const viewImgName =  hotelImageSrc + room.ImgNames[index]+".jpg";
 
-        room.ImgNames[index] = imgName;
+        room.ImgNames[index] = viewImgName;
       }
     }
 
@@ -124,7 +142,7 @@ export class RoomService {
     room.Title = title;
 
     let imgSrc = hotelImageSrc + room.imgName+".jpg"
-    room.imgName = imgSrc
+    room.viewImgName = imgSrc
 
     return room;
    }

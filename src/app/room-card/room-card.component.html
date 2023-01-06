@@ -1,0 +1,21 @@
+<mat-card *ngIf="room" class="card">
+  <mat-card-header>
+    <div mat-card-avatar class="card-header-image"></div>
+    <mat-card-title>{{room?.Title}}</mat-card-title>
+    <mat-card-subtitle>Hotel</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="{{room?.viewImgName}}" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item>Category: {{roomCategoryTitle}}</mat-list-item>
+      <mat-list-item>Count of visitors: {{room?.VisitorsNumber}}</mat-list-item>
+     </mat-list>
+    <p>
+      {{room?.Description}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions style="margin-top: 30px;">
+    <button mat-button [routerLink]="['/roomdetail', room.Id]">Go to view</button>
+    <button mat-button [routerLink]="['/edit-room', room.Id]">Edit</button>
+  </mat-card-actions>
+</mat-card>

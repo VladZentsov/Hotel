@@ -6,7 +6,7 @@
         <button type="button" *ngFor="let item of room?.ImgNames; let i = index" data-bs-target="#carouselExampleCaptions" [attr.data-bs-slide-to]="i+1" aria-label="Slide 2"></button>
       </div>
       <div class="carousel-inner">
-        <div class="carousel-item active" style="background-image: url({{room?.imgName}})">
+        <div class="carousel-item active" style="background-image: url({{room?.viewImgName}})">
           <div class="carousel-caption">
             <h5>First slide label</h5>
             <p>Some representative placeholder content for the first slide.</p>
@@ -30,6 +30,30 @@
     </div>
   </div>
 
+  <mat-card class="room-card">
+    <mat-card-header>
+        <mat-card-title>{{room.Title}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+          {{room.Description}}
+        </p>
+
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button style=
+                "background-color:blue;
+                 color:white">
+            LIKE
+        </button>
+        <button mat-button style=
+                "background-color:green;
+                 color:white">
+            SHARE
+        </button>
+    </mat-card-actions>
+</mat-card>
+
   <!-- <p>{{bookForm.value|json}} {{bookForm.status|json}}</p> -->
   <div class="form-block">
     <form novalidate [formGroup]="bookForm" #fform="ngForm" (ngSubmit)="onSubmit()">
@@ -40,7 +64,6 @@
           {{formErrors.firstname}}
         </mat-error>
         </mat-form-field>
-
         <mat-form-field class="half-width">
           <input matInput formControlName="surname" placeholder="Surname" type="text" required>
           <mat-error *ngIf="formErrors.lastname">

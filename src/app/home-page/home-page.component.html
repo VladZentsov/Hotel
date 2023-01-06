@@ -7,7 +7,7 @@
     <div class="container" *ngFor="let room of rooms">
       <div class="information_home_card">
         <div class="img_holder">
-          <img src={{room.imgName}} class="image rounded float-left" alt="...">
+          <img src={{room.viewImgName}} class="image rounded float-left" alt="...">
         </div>
         <div class="row justify-content-end">
           <div class="col-lg-7">
@@ -15,7 +15,7 @@
               <div class="blog_text">
                 <div class="cat">
                   <a class="cat_btn" href="#">Gadgets</a>
-                  <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
+                  <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> {{room.FirstDateForSettelment  | date:'mediumDate'}}</a>
                   <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
                 </div>
                 <a href="#"><h4>{{room.Title}}</h4></a>

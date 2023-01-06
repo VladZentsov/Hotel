@@ -6,7 +6,7 @@
           <button type="button" *ngFor="let item of room?.ImgNames; let i = index" data-bs-target="#carouselExampleCaptions" [attr.data-bs-slide-to]="i+1" aria-label="Slide 2"></button>
         </div>
         <div class="carousel-inner">
-          <div class="carousel-item active" style="background-image: url({{room?.imgName}})">
+          <div class="carousel-item active" style="background-image: url({{room?.viewImgName}})">
             <div class="carousel-caption">
               <h5>First slide label</h5>
               <p>Some representative placeholder content for the first slide.</p>
@@ -68,11 +68,11 @@
       <div fxFlex="40">
         <h4>Room Information</h4>
         <div *ngIf="room">
-          <p>Name: {{room.Description}}</p>
-          <p>Surname: {{room.Category}}</p>
-          <p>Email: {{room.VisitorsNumber}}</p>
-          <p>Description: {{room.Description}}</p>
+          <p>Room Id: {{room.Id}}</p>
           <p>Title: {{room.Title}}</p>
+          <p>Category of Room: {{roomCategoryTitle}}</p>
+          <p>Number of visitors: {{room.VisitorsNumber}}</p>
+          <p>Description: {{room.Description}}</p>
         </div>
       </div>
 

@@ -13,6 +13,7 @@ import { RoomFullnfo } from '../shared/RoomFullInfo';
 import { Book } from '../shared/Book';
 import { Customer } from '../shared/Customer';
 import { CustomerService } from '../services/customer.service';
+import { RoomCategory } from '../shared/RoomCategory';
 
 const today = new Date();
 const month = today.getMonth();
@@ -35,6 +36,7 @@ export class AdminRoomDetailComponent implements OnInit {
   bookCreateModel?: BookCreateModel;
   book:Book
   customer: Customer
+  roomCategoryTitle: string
 
   @ViewChild('fform') feedbackFormDirective: any;
 
@@ -78,7 +80,10 @@ export class AdminRoomDetailComponent implements OnInit {
     this.route.params.pipe(switchMap((params: Params)=>this.bookService.getBookById(params['id'])))
     .subscribe((book) => {
       this.book = book
-      this.roomService.getRoomDetailedById(book.RoomId).subscribe((room)=>this.room = room)
+      this.roomService.getRoomDetailedById(book.RoomId).subscribe((room)=>{
+        this.room = room
+        this.roomCategoryTitle = RoomCategory[this.room?.Category]
+      })
       this.customerService.getCustomerById(book.CustomerId).subscribe((customer)=>this.customer = customer)
       })
 

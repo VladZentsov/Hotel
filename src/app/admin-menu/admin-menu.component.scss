@@ -1,6 +1,12 @@
 .line-block{
     width: 90%;
     box-shadow: 3px 3px 3px 3px rgb(90, 90, 90);
+    height: 90px;
+    margin-top: 20px;
+}
+
+.room-info-block{
+  margin-top: 20px;
 }
 
 button{
@@ -16,10 +22,3 @@ button{
 // .card-header-image{
 //   width: 100%;
 // }
-.card{
-  width: 500px;
-}
-
-.mat-card-actions{
-  margin-top: 30px
-}

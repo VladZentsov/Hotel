@@ -3,7 +3,7 @@
   <div fxFlex>
     <div fxLayout="column" fxLayout.gt-sm="row">
         <div fxFlex fxFlex="50" fxFlexOffset="20px" *ngIf="twoDimentionalRoomsSettlement">
-            <div *ngFor="let roomsSettlement of twoDimentionalRoomsSettlement">
+            <div class="room-info-block" *ngFor="let roomsSettlement of twoDimentionalRoomsSettlement">
                 <h4 matLine>Date: {{roomsSettlement[0].Date | date:'medium'}}</h4>
                 <mat-list-item *ngFor="let roomSettlement of roomsSettlement">
                 <div class="line-block">
@@ -31,23 +31,15 @@
           </option>
         </select>
 
-        <h4>Room Information</h4>
-        <div *ngIf="room">
-          <p>Name: {{room.Description}}</p>
-          <p>Category: {{room.Category}}</p>
-          <p>Count of visitors: {{room.VisitorsNumber}}</p>
-          <p>Description: {{room.Description}}</p>
-          <p>Title: {{room.Title}}</p>
-        </div>
+        <app-room-card [room]="room"></app-room-card>
 
-
-        <mat-card class="card">
+        <!-- <mat-card *ngIf="room" class="card">
           <mat-card-header>
             <div mat-card-avatar class="card-header-image"></div>
             <mat-card-title>{{room?.Title}}</mat-card-title>
             <mat-card-subtitle>Hotel</mat-card-subtitle>
           </mat-card-header>
-          <img mat-card-image src="{{room?.imgName}}" alt="Photo of a Shiba Inu">
+          <img mat-card-image src="{{room?.viewImgName}}" alt="Photo of a Shiba Inu">
           <mat-card-content>
             <mat-list>
               <mat-list-item>Category: {{room?.Category}}</mat-list-item>
@@ -58,12 +50,10 @@
             </p>
           </mat-card-content>
           <mat-card-actions style="margin-top: 30px;">
-            <button mat-button>Go to view</button>
-            <button mat-button>Edit</button>
+            <button mat-button [routerLink]="['/roomdetail', room.Id]">Go to view</button>
+            <button mat-button [routerLink]="['/edit-room', room.Id]">Edit</button>
           </mat-card-actions>
-        </mat-card>
-
-
+        </mat-card> -->
 
     </div>
 

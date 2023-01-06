@@ -42,6 +42,7 @@ import { AdminRoomDetailComponent } from './admin-room-detail/admin-room-detail.
 
 import { NgxRerenderModule } from 'ngx-rerender';
 import { AdminRoomEditComponent } from './admin-room-edit/admin-room-edit.component';
+import { RoomCardComponent } from './room-card/room-card.component';
 
 
 
@@ -56,6 +57,7 @@ import { AdminRoomEditComponent } from './admin-room-edit/admin-room-edit.compon
     AdminMenuComponent,
     AdminRoomDetailComponent,
     AdminRoomEditComponent,
+    RoomCardComponent,
   ],
   imports: [
     BrowserModule,

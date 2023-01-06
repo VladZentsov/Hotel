@@ -1,1 +1,62 @@
-<p>admin-room-edit works!</p>
+<div fxFlex>
+  <div fxLayout="column" fxLayout.gt-sm="row">
+    <div fxFlex fxFlex="50" fxFlexOffset="20px">
+      <div *ngIf="currentRoom" class="form-block">
+        <form novalidate [formGroup]="editForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+          <div class="label-box">
+            <mat-label class="half-width">Category</mat-label>
+            <mat-label class="half-width">Price</mat-label>
+          </div>
+          <p>
+            <mat-form-field class="half-width">
+
+              <mat-select matInput formControlName="Category" class="ampm">
+                <mat-option *ngFor="let fileType of fileTypes"
+                [value]="fileType">
+                  {{RoomCategory2LabelMapping[fileType]}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="formErrors.Category">
+                {{formErrors.Category}}
+              </mat-error>
+
+            </mat-form-field>
+
+            <mat-form-field class="half-width">
+              <input matInput formControlName="Price" type="text" required>
+              <mat-error *ngIf="formErrors.Price">
+                {{formErrors.Price}}
+              </mat-error>
+            </mat-form-field>
+          </p>
+          <div class="label-box">
+            <mat-label class="half-width">Number of visitors</mat-label>
+          </div>
+          <p>
+            <mat-form-field class="half-width">
+              <input matInput formControlName="VisitorsNumber" type="text" required>
+              <mat-error *ngIf="formErrors.VisitorsNumber">
+                {{formErrors.VisitorsNumber}}
+              </mat-error>
+            </mat-form-field>
+          </p>
+          <div class="label-box">
+            <mat-label class="half-width">Number of visitors</mat-label>
+          </div>
+            <mat-form-field class="full-width">
+              <textarea matInput formControlName="Description"  rows="12">
+
+              </textarea>
+            </mat-form-field>
+          <button type="submit" mat-button class="background-primary text-floar-white"
+          [disabled]="editForm.invalid">Submit</button>
+        </form>
+    </div>
+  </div>
+  <div fxFlex fxFlex="50" fxFlexOffset="20px">
+    <app-room-card [room]="currentRoom"></app-room-card>
+  </div>
+</div>
+
+
+

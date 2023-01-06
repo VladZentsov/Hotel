@@ -29,6 +29,7 @@ export class BookCreateModel extends Book{
   Category: RoomCategory;
   VisitorsNumber: number;
   Description: string;
+  viewImgName: string;
   imgName: string;
   telNumber: string;
 

@@ -9,6 +9,7 @@ import { RoomDetailed } from '../shared/RoomDetails';
 import { Form, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { BookFullInfo } from '../shared/BookFullInfo';
 import { BookCreateModel } from '../shared/BookCreateModel';
+import { RoomCategory } from '../shared/RoomCategory';
 
 const today = new Date();
 const month = today.getMonth();
@@ -30,6 +31,7 @@ export class RoomDetailComponent implements OnInit {
   fitstImg?: string;
   bookForm!: FormGroup;
   bookCreateModel?: BookCreateModel;
+  roomCategoryTitle: string;
 
   @ViewChild('fform') feedbackFormDirective: any;
 
@@ -73,6 +75,7 @@ export class RoomDetailComponent implements OnInit {
     this.route.params.pipe(switchMap((params: Params)=>this.roomService.getRoomDetailedById(params['id'])))
     .subscribe((room) => {
       this.room = room
+      this.roomCategoryTitle = RoomCategory[this.room?.Category]
 
       this.bookService.getFreeBookDates(this.room?.Id).subscribe((freeBookDates)=>{
         this.freeBookDates = freeBookDates
