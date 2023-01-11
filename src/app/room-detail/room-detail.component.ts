@@ -10,6 +10,7 @@ import { Form, FormBuilder, FormGroup, Validators, FormControl } from '@angular/
 import { BookFullInfo } from '../shared/BookFullInfo';
 import { BookCreateModel } from '../shared/BookCreateModel';
 import { RoomCategory } from '../shared/RoomCategory';
+import { visibility, flyInOut, expand } from '../animations/app.animation';
 
 const today = new Date();
 const month = today.getMonth();
@@ -20,7 +21,17 @@ const day = today.getDay();
 @Component({
   selector: 'app-room-detail',
   templateUrl: './room-detail.component.html',
-  styleUrls: ['./room-detail.component.scss']
+  styleUrls: ['./room-detail.component.scss'],
+
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+    },
+    animations: [
+      visibility(),
+      flyInOut(),
+      expand()
+    ]
 })
 export class RoomDetailComponent implements OnInit {
 
@@ -32,6 +43,7 @@ export class RoomDetailComponent implements OnInit {
   bookForm!: FormGroup;
   bookCreateModel?: BookCreateModel;
   roomCategoryTitle: string;
+  errMess: string;
 
   @ViewChild('fform') feedbackFormDirective: any;
 
@@ -88,7 +100,11 @@ export class RoomDetailComponent implements OnInit {
       this.imgNumber = 0
 
 
-    });
+    }, (err)=>{
+      this.errMess = err.error
+    }
+
+    );
   }
 
   createForm(){

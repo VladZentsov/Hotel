@@ -48,9 +48,9 @@
       <div fxFlex="50" fxFlexOffset="20px">
         <h4>Book Information</h4>
         <div *ngIf="book">
-          <p>Start Date: {{book.StartDate}}</p>
-          <p>End Date: {{book.EndDate}}</p>
-          <p>End Date: {{book.EndDate}}</p>
+          <p>Book Id: {{book.Id}}</p>
+          <p>Start Date: {{book.StartDate | date: 'dd/MM/yyyy'}}</p>
+          <p>End Date: {{book.EndDate | date: 'dd/MM/yyyy'}}</p>
           <p>Price: {{book.Price}}</p>
           <p>Is payment complete: {{book.IsPaymentComplete}}</p>
         </div>

@@ -1,110 +1,128 @@
 <div class="page-area">
-  <div class="container" >
-    <div *ngIf="room" id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-indicators" *ngFor="let buttonNumber of caruselButtons">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" *ngFor="let item of room?.ImgNames; let i = index" data-bs-target="#carouselExampleCaptions" [attr.data-bs-slide-to]="i+1" aria-label="Slide 2"></button>
+  <div class="page-content" >
+
+    <div class="error-handler">
+      <div fxFlex [hidden]="room|| errMess" [@expand]>
+        <mat-spinner></mat-spinner> <h4>Loading . . . Please Wait</h4>
       </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active" style="background-image: url({{room?.viewImgName}})">
-          <div class="carousel-caption">
-            <h5>First slide label</h5>
-            <p>Some representative placeholder content for the first slide.</p>
-          </div>
-        </div>
-        <div class="carousel-item" *ngFor="let roomImg of room?.ImgNames"  style="background-image: url({{roomImg}})">
-          <div class="carousel-caption">
-            <h5>First slide label</h5>
-            <p>Some representative placeholder content for the first slide.</p>
-          </div>
-        </div>
+      <div fxFlex *ngIf="errMess">
+        <h2>Error</h2>
+        <h4>{{errMess}}</h4>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
     </div>
+
+    <div *ngIf="room">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators" *ngFor="let buttonNumber of caruselButtons">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" *ngFor="let item of room?.ImgNames; let i = index" data-bs-target="#carouselExampleCaptions" [attr.data-bs-slide-to]="i+1" aria-label="Slide 2"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active" style="background-image: url({{room?.viewImgName}})">
+              <div class="carousel-caption">
+                <h5>First slide label</h5>
+                <p>Some representative placeholder content for the first slide.</p>
+              </div>
+            </div>
+            <div class="carousel-item" *ngFor="let roomImg of room?.ImgNames"  style="background-image: url({{roomImg}})">
+              <div class="carousel-caption">
+                <h5>First slide label</h5>
+                <p>Some representative placeholder content for the first slide.</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+
+      <mat-card class="room-card">
+        <mat-card-header>
+            <mat-card-title>{{room.Title}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            Price: {{room.Price}}
+          </p>
+          <p>
+            Number of visitors: {{room.VisitorsNumber}}
+          </p>
+            <p>
+              {{room.Description}}
+            </p>
+
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button style=
+                    "background-color:blue;
+                    color:white">
+                LIKE
+            </button>
+            <button mat-button style=
+                    "background-color:green;
+                    color:white">
+                SHARE
+            </button>
+        </mat-card-actions>
+      </mat-card>
+
+        <!-- <p>{{bookForm.value|json}} {{bookForm.status|json}}</p> -->
+      <div class="form-block">
+        <form novalidate [formGroup]="bookForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+          <p>
+            <mat-form-field class="half-width">
+              <input matInput formControlName="name" placeholder="Name" type="text" required>
+            <mat-error *ngIf="formErrors.firstname">
+              {{formErrors.firstname}}
+            </mat-error>
+            </mat-form-field>
+            <mat-form-field class="half-width">
+              <input matInput formControlName="surname" placeholder="Surname" type="text" required>
+              <mat-error *ngIf="formErrors.lastname">
+                {{formErrors.lastname}}
+              </mat-error>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="half-width">
+              <input matInput formControlName="telnum" placeholder="Tel. Number" type="tel" pattern="[0-9]*" required>
+              <mat-error *ngIf="formErrors.telnum">
+                {{formErrors.telnum}}
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="half-width">
+              <input matInput formControlName="email" placeholder="Email" type="email" email required>
+              <mat-error *ngIf="formErrors.email">
+                {{formErrors.email}}
+              </mat-error>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Admission Date Range</mat-label>
+              <mat-date-range-input [rangePicker]="admDateRangePicker" [dateFilter]="myFilter">
+                <input matStartDate formControlName="startDate" placeholder="Start date" >
+                <input matEndDate formControlName="endDate" placeholder="End date">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="admDateRangePicker"></mat-datepicker-toggle>
+              <mat-date-range-picker #admDateRangePicker></mat-date-range-picker>
+            </mat-form-field>
+
+          </p>
+          <button type="submit" mat-button class="background-primary text-floar-white"
+          [disabled]="bookForm.invalid">Submit</button>
+        </form>
+      </div>
+
   </div>
 
-  <mat-card class="room-card">
-    <mat-card-header>
-        <mat-card-title>{{room.Title}}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-        Price: {{room.Price}}
-      </p>
-      <p>
-        Number of visitors: {{room.VisitorsNumber}}
-      </p>
-        <p>
-          {{room.Description}}
-        </p>
 
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-button style=
-                "background-color:blue;
-                 color:white">
-            LIKE
-        </button>
-        <button mat-button style=
-                "background-color:green;
-                 color:white">
-            SHARE
-        </button>
-    </mat-card-actions>
-</mat-card>
 
-  <!-- <p>{{bookForm.value|json}} {{bookForm.status|json}}</p> -->
-  <div class="form-block">
-    <form novalidate [formGroup]="bookForm" #fform="ngForm" (ngSubmit)="onSubmit()">
-      <p>
-        <mat-form-field class="half-width">
-          <input matInput formControlName="name" placeholder="Name" type="text" required>
-        <mat-error *ngIf="formErrors.firstname">
-          {{formErrors.firstname}}
-        </mat-error>
-        </mat-form-field>
-        <mat-form-field class="half-width">
-          <input matInput formControlName="surname" placeholder="Surname" type="text" required>
-          <mat-error *ngIf="formErrors.lastname">
-            {{formErrors.lastname}}
-          </mat-error>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field class="half-width">
-          <input matInput formControlName="telnum" placeholder="Tel. Number" type="tel" pattern="[0-9]*" required>
-          <mat-error *ngIf="formErrors.telnum">
-            {{formErrors.telnum}}
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="half-width">
-          <input matInput formControlName="email" placeholder="Email" type="email" email required>
-          <mat-error *ngIf="formErrors.email">
-            {{formErrors.email}}
-          </mat-error>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field>
-          <mat-label>Admission Date Range</mat-label>
-          <mat-date-range-input [rangePicker]="admDateRangePicker" [dateFilter]="myFilter">
-            <input matStartDate formControlName="startDate" placeholder="Start date" >
-            <input matEndDate formControlName="endDate" placeholder="End date">
-          </mat-date-range-input>
-          <mat-datepicker-toggle matSuffix [for]="admDateRangePicker"></mat-datepicker-toggle>
-          <mat-date-range-picker #admDateRangePicker></mat-date-range-picker>
-        </mat-form-field>
 
-      </p>
-      <button type="submit" mat-button class="background-primary text-floar-white"
-      [disabled]="bookForm.invalid">Submit</button>
-    </form>
-  </div>
 </div>

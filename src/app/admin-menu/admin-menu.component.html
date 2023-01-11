@@ -10,7 +10,7 @@
                     <p matLine>Room id: {{roomSettlement.RoomId}} </p>
                     <p matLine *ngIf="roomSettlement.IsSettlement">Settlement</p>
                     <p matLine *ngIf="!roomSettlement.IsSettlement">Departure</p>
-                    <button type="button" class="btn btn-primary" [routerLink]="['/admin-room-detail', roomSettlement.RoomId]">View details</button>
+                    <button type="button" class="btn btn-primary" [routerLink]="['/admin-room-detail', roomSettlement.BookId]">View details</button>
                 </div>
                 </mat-list-item>
             </div>
